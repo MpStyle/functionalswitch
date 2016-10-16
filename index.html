@@ -1,123 +1,13 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>functionalswitch by MpStyle</title>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>functionalswitch</h1>
-        <p>A functional approach to the switch statement</p>
-
-        <p class="view"><a href="https://github.com/MpStyle/functionalswitch">View the Project on GitHub <small>MpStyle/functionalswitch</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/MpStyle/functionalswitch/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/MpStyle/functionalswitch/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/MpStyle/functionalswitch">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a id="functionalswitch" class="anchor" href="#functionalswitch" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>functionalswitch</h1>
-
-<p>A functional approach to the switch statement.</p>
-
-<ul>
-<li><a href="#install">Install</a></li>
-<li>
-<a href="quickstart">Quickstart Guide</a> - How to include Functional Java in your project and get started</li>
-</ul>
-
-<p><a name="install"></a></p>
-
-<h2>
-<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
-
-<p><a href="https://jitpack.io/#MpStyle/functionalswitch">JitPack</a></p>
-
-<p><a name="quickstart"></a></p>
-
-<h2>
-<a id="quickstart-guide" class="anchor" href="#quickstart-guide" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quickstart Guide</h2>
-
-<p>There are 3 ways to create a functional switch, using:</p>
-
-<ul>
-<li>
-<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Callable.html"><strong>Callable</strong></a>: only returns value<br>
-</li>
-<li>
-<a href=""><strong>Callback</strong></a>: only receives parameters (from 1 to 5)</li>
-<li>
-<a href="https://github.com/bodar/totallylazy/"><strong>Function</strong></a>: receives parameters (from 1 to 5) and return values</li>
-</ul>
-
-<h3>
-<a id="callable-example" class="anchor" href="#callable-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Callable example</h3>
-
-<div class="highlight highlight-source-java"><pre>callableSwitch<span class="pl-k">.</span>add(<span class="pl-s"><span class="pl-pds">"</span>key1<span class="pl-pds">"</span></span>, <span class="pl-k">new</span> <span class="pl-k">Callable&lt;<span class="pl-smi">String</span>&gt;</span>() {
-    <span class="pl-k">@Override</span>
-    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">call</span>() <span class="pl-k">throws</span> <span class="pl-smi">Exception</span> {
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>key1<span class="pl-pds">"</span></span>;
-    }
-})<span class="pl-k">.</span>add(<span class="pl-s"><span class="pl-pds">"</span>key2<span class="pl-pds">"</span></span>, <span class="pl-k">new</span> <span class="pl-k">Callable&lt;<span class="pl-smi">String</span>&gt;</span>() {
-    <span class="pl-k">@Override</span>
-    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">call</span>() <span class="pl-k">throws</span> <span class="pl-smi">Exception</span> {
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>key2<span class="pl-pds">"</span></span>;
-    }
-})<span class="pl-k">.</span>add(<span class="pl-s"><span class="pl-pds">"</span>key3<span class="pl-pds">"</span></span>, <span class="pl-k">new</span> <span class="pl-k">Callable&lt;<span class="pl-smi">String</span>&gt;</span>() {
-    <span class="pl-k">@Override</span>
-    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">call</span>() <span class="pl-k">throws</span> <span class="pl-smi">Exception</span> {
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>key3<span class="pl-pds">"</span></span>;
-    }
-})<span class="pl-k">.</span>addDefault(<span class="pl-k">new</span> <span class="pl-k">Callable&lt;<span class="pl-smi">String</span>&gt;</span>() {
-    <span class="pl-k">@Override</span>
-    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">call</span>() <span class="pl-k">throws</span> <span class="pl-smi">Exception</span> {
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>default<span class="pl-pds">"</span></span>;
-    }
-});
-
-assertEquals(callableSwitch<span class="pl-k">.</span>call(<span class="pl-s"><span class="pl-pds">"</span>key1<span class="pl-pds">"</span></span>), <span class="pl-s"><span class="pl-pds">"</span>key1<span class="pl-pds">"</span></span>);
-assertEquals(callableSwitch<span class="pl-k">.</span>call(<span class="pl-s"><span class="pl-pds">"</span>key2<span class="pl-pds">"</span></span>), <span class="pl-s"><span class="pl-pds">"</span>key2<span class="pl-pds">"</span></span>);
-assertEquals(callableSwitch<span class="pl-k">.</span>call(<span class="pl-s"><span class="pl-pds">"</span>key3<span class="pl-pds">"</span></span>), <span class="pl-s"><span class="pl-pds">"</span>key3<span class="pl-pds">"</span></span>);
-assertEquals(callableSwitch<span class="pl-k">.</span>call(<span class="pl-s"><span class="pl-pds">"</span>key4<span class="pl-pds">"</span></span>), <span class="pl-s"><span class="pl-pds">"</span>default<span class="pl-pds">"</span></span>);
-</pre></div>
-
-<h3>
-<a id="callback-example" class="anchor" href="#callback-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Callback example</h3>
-
-<pre><code></code></pre>
-<h3>
-<a id="function-example" class="anchor" href="#function-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Function example</h3>
-
-<pre><code></code></pre>
-<h2>
-<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
-
-<p><a href="../../doc/index.html">JavaDoc</a></p>
-
-<h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
-
-<p><a href="https://www.gnu.org/licenses/lgpl-3.0.en.html">LGPL v. 3</a></p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/MpStyle">MpStyle</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+    <meta http-equiv="refresh"
+          content=";URL=doc/index.html">
+</head>
+<body>
+</body>
 </html>
