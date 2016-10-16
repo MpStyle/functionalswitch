@@ -63,7 +63,7 @@ assertEquals(callableSwitch.call("key4"), "default");
 
 ## Documentation
 
-[JavaDoc](../../doc/index.html)
+[JavaDoc](https://mpstyle.github.io/functionalswitch/doc)
 
 ## License
 
