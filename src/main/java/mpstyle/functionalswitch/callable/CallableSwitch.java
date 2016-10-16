@@ -1,12 +1,11 @@
 package mpstyle.functionalswitch.callable;
 
 import mpstyle.functionalswitch.FunctionalSwitch;
-import mpstyle.functionalswitch.InvalidFunctionalDefinitionException;
 
 import java.util.concurrent.Callable;
 
 public class CallableSwitch<T> extends FunctionalSwitch<String, Callable<T>> {
-    public T call(String key) throws InvalidFunctionalDefinitionException, Exception {
+    public T call(String key) throws Exception {
         if (containsKey(key)) {
             return getFunctional(key).call();
         }
@@ -15,6 +14,6 @@ public class CallableSwitch<T> extends FunctionalSwitch<String, Callable<T>> {
             return getFunctionalDefault().call();
         }
 
-        throw new InvalidFunctionalDefinitionException(key);
+        return null;
     }
 }
