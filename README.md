@@ -2,6 +2,8 @@
 
 A functional approach to the switch statement.
 
+[![Build Status](https://travis-ci.org/MpStyle/functionalswitch.svg?branch=master)](https://travis-ci.org/MpStyle/functionalswitch)
+
 - [Install](#install)
 - [Quickstart Guide](quickstart) - How to include Functional Java in your project and get started
 
