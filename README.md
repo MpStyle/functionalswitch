@@ -1,72 +1,85 @@
-# functionalswitch
+# Functional Switch
 
-A functional approach to the switch statement.
+Inspired by [C# switch expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/switch-expression), **Functional Switch** is a lazy and naive way to execute a single behavior ([Consumers](https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html), [Functions](https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html), [Predicates](https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html) or [Suppliers](https://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html)) from a list of candidate expressions.  
 
-[![Build Status](https://travis-ci.org/MpStyle/functionalswitch.svg?branch=master)](https://travis-ci.org/MpStyle/functionalswitch)
+**Last version:** 2.0.0
 
-- [Install](#install)
-- [Quickstart Guide](quickstart) - How to include Functional Java in your project and get started
+**License:** MIT
 
-<a name="install"></a>
-## Install
+**Continuous Integration:** [![Build Status](https://travis-ci.org/MpStyle/functionalswitch.svg?branch=master)](https://travis-ci.org/MpStyle/functionalswitch) [![](https://jitpack.io/v/MpStyle/functionalswitch.svg)](https://jitpack.io/#MpStyle/functionalswitch)
 
-[JitPack](https://jitpack.io/#MpStyle/functionalswitch)
+## Installation
 
-<a name="quickstart"></a>
-## Quickstart Guide
+### Maven
+```xml
+<repositories>
+    ...
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+    ...
+</repositories>
+...
+<dependency>
+    <groupId>com.github.MpStyle</groupId>
+    <artifactId>functionalswitch</artifactId>
+    <version>v2.0.0</version>
+</dependency>
+```
 
-There are 3 ways to create a functional switch, using:
-
-- [**Callable**](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Callable.html): only returns value  
-- [**Callback**](): only receives parameters (from 1 to 5)
-- [**Function**](https://github.com/bodar/totallylazy/): receives parameters (from 1 to 5) and return values
-
-### Callable example
-
-```java
-callableSwitch.add("key1", new Callable<String>() {
-    @Override
-    public String call() throws Exception {
-        return "key1";
+### Gradle
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
     }
-}).add("key2", new Callable<String>() {
-    @Override
-    public String call() throws Exception {
-        return "key2";
-    }
-}).add("key3", new Callable<String>() {
-    @Override
-    public String call() throws Exception {
-        return "key3";
-    }
-}).addDefault(new Callable<String>() {
-    @Override
-    public String call() throws Exception {
-        return "default";
-    }
-});
+}
 
-assertEquals(callableSwitch.call("key1"), "key1");
-assertEquals(callableSwitch.call("key2"), "key2");
-assertEquals(callableSwitch.call("key3"), "key3");
-assertEquals(callableSwitch.call("key4"), "default");
+...
+
+dependencies {
+    compile 'com.github.MpStyle:functionalswitch:v2.0.0'
+}
 
 ```
 
-### Callback example
+## Usages
 
+### Function switch 
+Definition:
 ```java
+var behaviors = FunctionSwitch.<Integer, Integer>build()
+    .add("key01", input -> input + 1)
+    .add("key02", input -> input + 2)
+    .addDefault(input -> 0);
+```
+Usage:
+```java
+var result = behaviors.apply("key01", 5); // result == 6
 ```
 
-### Function example
-
+### Consumer switch
+### Predicate switch
+### Supplier switch
+Definition:
 ```java
+var behaviors = SupplierSwitch.<Integer>build()
+    .add("key01", () -> 5)
+    .add("key02", () -> 6)
+    .addDefault(() -> 0);
+```
+Usage:
+```java
+var result = behaviors.get("key01"); // result == 5
 ```
 
-## Documentation
+## How to release a new version
 
-[JavaDoc](https://mpstyle.github.io/functionalswitch/doc)
-
-## License
-
-[LGPL v. 3](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+Steps:
+* Change version in pom.xml file
+* Change version in README.md file
+* Check the build result on [Travis CI](https://travis-ci.org/github/MpStyle/functionalswitch)
+* Draft a new release in GitHub
+* Check the build on [JitPack](https://jitpack.io/#MpStyle/functionalswitch)
